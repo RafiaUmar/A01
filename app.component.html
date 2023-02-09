@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <form #login="ngForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="Mail">Mail</label><br />
+          <input type="text" class="mail" name="mail" value="" ngModel required />
+        </div>
+        <pre></pre>
+        <div class="form-group">
+          <label>Subscriptions</label><br />
+          <select name="Subscriptions" [ngModel]="level" required>
+            <option value="Basic">Basic</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Pro">Pro</option>
+          </select>
+        </div>
+        <pre></pre>
+        <div class="form-group">
+          <label>Password</label><br />
+          <input
+            type="password"
+            class="password"
+            name="numeric"
+            ngModel
+            required
+            #password="ngModel"
+          />
+          <span *ngIf="password.invalid">
+            <p>Please fill it with right password</p>
+          </span>
+        </div>
+        <pre></pre>
+        <button class="btn btn-success" [disabled]="!login.valid">
+          Submit
+        </button>
+        <p class="forminvalid" *ngIf="login.invalid && login.touched"><b><i>Form is invalid:/</i></b></p>
+      </form>
+      <div class="col-xs-12" *ngIf="submitted">
+        <h3>Data Saved</h3>
+        <p>Mail:{{Data.email}}</p>
+        <p>Subscriptions:{{Data.Subscription}}</p>
+        <p>Password:{{Data.password}}</p>
+      </div>
+    </div>
+  </div>
+</div>
